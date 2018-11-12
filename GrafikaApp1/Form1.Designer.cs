@@ -56,11 +56,11 @@
             // 
             this.BtnRysuj.Location = new System.Drawing.Point(13, 13);
             this.BtnRysuj.Name = "BtnRysuj";
-            this.BtnRysuj.Size = new System.Drawing.Size(202, 23);
+            this.BtnRysuj.Size = new System.Drawing.Size(162, 23);
             this.BtnRysuj.TabIndex = 0;
             this.BtnRysuj.Text = "RYSUJ";
             this.BtnRysuj.UseVisualStyleBackColor = true;
-            this.BtnRysuj.Click += new System.EventHandler(this.BtnRysuj_Click);
+            this.BtnRysuj.Click += new System.EventHandler(this.BtnDraw_Click);
             // 
             // tX
             // 
@@ -104,9 +104,9 @@
             // 
             // BtnLine
             // 
-            this.BtnLine.Location = new System.Drawing.Point(12, 217);
+            this.BtnLine.Location = new System.Drawing.Point(13, 196);
             this.BtnLine.Name = "BtnLine";
-            this.BtnLine.Size = new System.Drawing.Size(75, 23);
+            this.BtnLine.Size = new System.Drawing.Size(50, 23);
             this.BtnLine.TabIndex = 7;
             this.BtnLine.Text = "Linia";
             this.BtnLine.UseVisualStyleBackColor = true;
@@ -114,7 +114,7 @@
             // 
             // tWidth
             // 
-            this.tWidth.Location = new System.Drawing.Point(80, 129);
+            this.tWidth.Location = new System.Drawing.Point(80, 124);
             this.tWidth.Name = "tWidth";
             this.tWidth.Size = new System.Drawing.Size(36, 20);
             this.tWidth.TabIndex = 8;
@@ -122,7 +122,7 @@
             // 
             // tHeight
             // 
-            this.tHeight.Location = new System.Drawing.Point(122, 129);
+            this.tHeight.Location = new System.Drawing.Point(122, 124);
             this.tHeight.Name = "tHeight";
             this.tHeight.Size = new System.Drawing.Size(36, 20);
             this.tHeight.TabIndex = 9;
@@ -130,7 +130,7 @@
             // 
             // tRadius
             // 
-            this.tRadius.Location = new System.Drawing.Point(80, 185);
+            this.tRadius.Location = new System.Drawing.Point(80, 152);
             this.tRadius.Name = "tRadius";
             this.tRadius.Size = new System.Drawing.Size(36, 20);
             this.tRadius.TabIndex = 10;
@@ -138,9 +138,10 @@
             // 
             // BtnRectangle
             // 
-            this.BtnRectangle.Location = new System.Drawing.Point(12, 246);
+            this.BtnRectangle.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BtnRectangle.Location = new System.Drawing.Point(69, 196);
             this.BtnRectangle.Name = "BtnRectangle";
-            this.BtnRectangle.Size = new System.Drawing.Size(75, 23);
+            this.BtnRectangle.Size = new System.Drawing.Size(50, 23);
             this.BtnRectangle.TabIndex = 11;
             this.BtnRectangle.Text = "Prostokąt";
             this.BtnRectangle.UseVisualStyleBackColor = true;
@@ -148,9 +149,9 @@
             // 
             // BtnCircle
             // 
-            this.BtnCircle.Location = new System.Drawing.Point(12, 275);
+            this.BtnCircle.Location = new System.Drawing.Point(125, 196);
             this.BtnCircle.Name = "BtnCircle";
-            this.BtnCircle.Size = new System.Drawing.Size(75, 23);
+            this.BtnCircle.Size = new System.Drawing.Size(50, 23);
             this.BtnCircle.TabIndex = 12;
             this.BtnCircle.Text = "Okręg";
             this.BtnCircle.UseVisualStyleBackColor = true;
@@ -185,7 +186,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(12, 129);
+            this.label4.Location = new System.Drawing.Point(12, 124);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 48);
             this.label4.TabIndex = 16;
@@ -194,7 +195,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 188);
+            this.label5.Location = new System.Drawing.Point(16, 155);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 17;
@@ -202,9 +203,9 @@
             // 
             // BtnClear
             // 
-            this.BtnClear.Location = new System.Drawing.Point(12, 305);
+            this.BtnClear.Location = new System.Drawing.Point(13, 225);
             this.BtnClear.Name = "BtnClear";
-            this.BtnClear.Size = new System.Drawing.Size(75, 23);
+            this.BtnClear.Size = new System.Drawing.Size(162, 23);
             this.BtnClear.TabIndex = 18;
             this.BtnClear.Text = "Wyczyść";
             this.BtnClear.UseVisualStyleBackColor = true;
@@ -212,9 +213,9 @@
             // 
             // BtnRGB
             // 
-            this.BtnRGB.Location = new System.Drawing.Point(13, 344);
+            this.BtnRGB.Location = new System.Drawing.Point(13, 254);
             this.BtnRGB.Name = "BtnRGB";
-            this.BtnRGB.Size = new System.Drawing.Size(75, 23);
+            this.BtnRGB.Size = new System.Drawing.Size(50, 23);
             this.BtnRGB.TabIndex = 19;
             this.BtnRGB.Text = "Kolor RGB";
             this.BtnRGB.UseVisualStyleBackColor = true;
@@ -223,18 +224,18 @@
             // label6
             // 
             this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(94, 344);
+            this.label6.Location = new System.Drawing.Point(94, 254);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 23);
+            this.label6.Size = new System.Drawing.Size(75, 23);
             this.label6.TabIndex = 20;
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.White;
-            this.pictureBox1.Location = new System.Drawing.Point(221, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(181, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(775, 538);
+            this.pictureBox1.Size = new System.Drawing.Size(815, 538);
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);

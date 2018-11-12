@@ -27,7 +27,7 @@ namespace GrafikaApp1
 
 
 
-        private void BtnRysuj_Click(object sender, EventArgs e)
+        private void BtnDraw_Click(object sender, EventArgs e)
         {
             if (line)
             {
@@ -37,7 +37,6 @@ namespace GrafikaApp1
             }
             if (rectangle)
             {
-
                 Clear();
                 rect = new Rectangle(int.Parse(tX.Text), int.Parse(tY.Text), int.Parse(tWidth.Text), int.Parse(tHeight.Text));
                 g.FillRectangle(new SolidBrush(color), rect);
@@ -47,7 +46,6 @@ namespace GrafikaApp1
             if (circle)
             {
                 Clear();
-                
                 g.FillEllipse(new SolidBrush(color), int.Parse(tX.Text), int.Parse(tY.Text), int.Parse(tRadius.Text), int.Parse(tRadius.Text));
                 circle = false;
             }
@@ -88,6 +86,7 @@ namespace GrafikaApp1
             rectangle = true;
             tXP.Enabled = false;
             tYP.Enabled = false;
+            tSize.Enabled = false;
             tRadius.Enabled = false;
         }
 
@@ -97,6 +96,7 @@ namespace GrafikaApp1
             ClearSelections();
             tXP.Enabled = false;
             tYP.Enabled = false;
+            tSize.Enabled = false;
             tWidth.Enabled = false;
             tHeight.Enabled = false;
         }
@@ -115,10 +115,10 @@ namespace GrafikaApp1
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics graphics = e.Graphics;
-            if (rectangle) graphics.FillRectangle(new SolidBrush(color), rect);
-            if (line) graphics.FillRectangle(new SolidBrush(color), rect);
-            if (circle) graphics.FillEllipse(new SolidBrush(color), rect);
+            //Graphics graphics = e.Graphics;
+            //if (rectangle) graphics.FillRectangle(new SolidBrush(color), rect);
+            //if (line) graphics.FillRectangle(new SolidBrush(color), rect);
+            //if (circle) graphics.FillEllipse(new SolidBrush(color), rect);
 
         }
 
