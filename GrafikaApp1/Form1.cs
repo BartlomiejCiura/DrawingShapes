@@ -53,7 +53,8 @@ namespace GrafikaApp1
                 if (circle)
                 {
                     Clear();
-                    g.FillEllipse(new SolidBrush(color), int.Parse(tX.Text), int.Parse(tY.Text), int.Parse(tRadius.Text), int.Parse(tRadius.Text));
+                    rect = new Rectangle(int.Parse(tX.Text), int.Parse(tY.Text), int.Parse(tRadius.Text), int.Parse(tRadius.Text));
+                    g.FillEllipse(new SolidBrush(color), rect);
                    // circle = false;
                 }
 
@@ -87,27 +88,36 @@ namespace GrafikaApp1
             tWidth.Enabled = false;
             tHeight.Enabled = false;
             tRadius.Enabled = false;
+            rectangle = false;
+            circle = false;
         }
 
         private void BtnRectangle_Click(object sender, EventArgs e)
         {
-           // ClearSelections();
+            // ClearSelections();
+            rect = new Rectangle();
             rectangle = true;
             tXP.Enabled = false;
             tYP.Enabled = false;
             tSize.Enabled = false;
             tRadius.Enabled = false;
+            line = false;
+            circle = false;
         }
 
         private void BtnCircle_Click(object sender, EventArgs e)
         {
             circle = true;
-           // ClearSelections();
+            rect = new Rectangle();
+
+            // ClearSelections();
             tXP.Enabled = false;
             tYP.Enabled = false;
             tSize.Enabled = false;
             tWidth.Enabled = false;
             tHeight.Enabled = false;
+            line = false;
+            rectangle = false;
         }
 
 
@@ -116,35 +126,37 @@ namespace GrafikaApp1
 
             //ColorDialog colorDialog = new ColorDialog();
             //colorDialog.FullOpen = true;
-            //if(colorDialog.ShowDialog() == DialogResult.OK)
+            //if (colorDialog.ShowDialog() == DialogResult.OK)
             //{
             //    color = colorDialog.Color;
-            //    label6.BackColor = color;
-            //    label6.Text = color.R + " " + color.G + " " + color.B ;
+            //    //.BackColor = color;
+            //   // label6.Text = color.R + " " + color.G + " " + color.B;
             //}
 
+            //var red1 = TbRed.Text;
             int red = Convert.ToInt32(TbRed.Text);
             int green = Convert.ToInt32(TbGreen.Text);
             int blue = Convert.ToInt32(TbBlue.Text);
 
             color = Color.FromArgb(red, green, blue);
-            BtnRGB.BackColor = color;
+            //BtnRGB.BackColor = color;
+            label6.BackColor = color;
 
-            double r = 1 - red / 255;
-            double g = 1 - green / 255;
-            double b = 1 - blue / 255;
+            float r = red / 255f;
+            float g = green / 255f;
+            float b = blue / 255f;
 
-            double min =  new[]{ r, g, b }.Min();
+            float min = new[] { 1-r, 1-g, 1-b }.Min();
             k = min;
 
-            c = (r - k) / (1 - k); if (c is double) c = c;
-            m = (g - k) / (1 - k);
-            y = (b - k) / (1 - k);
+            c = (1 - r - k) / (1 - k); if (c < 0) c = 0;
+            m = (1 - g - k) / (1 - k); if (m < 0) m = 0;
+            y = (1 - b - k) / (1 - k); if (y < 0) y = 0;
 
-            //c = (c * 100) + 0.5;
-            //m = (m * 100) + 0.5;
-            //y = (y * 100) + 0.5;
-            //k = (k * 100) + 0.5;
+            c = Math.Round(c * 100);
+            m = Math.Round(m * 100);
+            y = Math.Round(y * 100);
+            k = Math.Round(k * 100);
 
             TbCyan.Text = c.ToString();
             TbMagenta.Text = m.ToString();
@@ -167,38 +179,92 @@ namespace GrafikaApp1
             rect.Location = e.Location;
         }
 
+        private void BtnResizing_Click(object sender, EventArgs e)
+        {
+            BtnResizing.BackColor = Color.LightSeaGreen;
+            BtnDrawing.BackColor = default(Color);
+            rect.Width = Convert.ToInt32(tWidth.Text);
+            rect.Height = Convert.ToInt32(tHeight.Text);
+        }
+
+        private void BtnCMYK_Click(object sender, EventArgs e)
+        {
+            int cyan = Convert.ToInt32(TbCyan.Text);
+            int magenta = Convert.ToInt32(TbMagenta.Text);
+            int yellow = Convert.ToInt32(TbYellow.Text);
+            int black = Convert.ToInt32(TbBlack.Text);
+
+
+
+            c = cyan / 100;
+            m = magenta / 100;
+            y = yellow / 100;
+            k = black / 100;
+
+            var r = 1 - Math.Min(1, c * (1 - k) + k);
+            var g = 1 - Math.Min(1, m * (1 - k) + k);
+            var b = 1 - Math.Min(1, y * (1 - k) + k);
+
+            r = Math.Round(r * 255);
+            g = Math.Round(g * 255);
+            b = Math.Round(b * 255);
+
+          
+
+            TbRed.Text = r.ToString();
+            TbGreen.Text = g.ToString();
+            TbBlue.Text = b.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            colorDialog.FullOpen = true;
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                color = colorDialog.Color;
+                label6.BackColor = color;
+                // label6.Text = color.R + " " + color.G + " " + color.B;
+            }
+        }
+
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
             isMouseDown = false;
+            
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+                //if (rect.Left < e.X && e.X < rect.Right && rect.Top < e.Y && e.Y < rect.Bottom)
+               // {
             if (isMouseDown == true)
             {
-             
-                int a = rect.Left;
 
-                rect.Location = e.Location;
+                    //int a = rect.Left;
+                    rect.Location = e.Location;
+                    //rect.X = e.X - rect.X;
+                    //rect.Y = e.Y - rect.Y;
 
-                if (rect.Right > pictureBox1.Width)
-                {
-                    rect.X = pictureBox1.Width - rect.Width;
-                }
-                if (rect.Top < 0)
-                {
-                    rect.Y = 0;
-                }
-                if (rect.Left < 0)
-                {
-                    rect.X = 0;
-                }
-                if (rect.Bottom > pictureBox1.Height)
-                {
-                    rect.Y = pictureBox1.Height - rect.Height;
-                }
-                Refresh();
-                
+                    if (rect.Right > pictureBox1.Width)
+                    {
+                        rect.X = pictureBox1.Width - rect.Width;
+                    }
+                    if (rect.Top < 0)
+                    {
+                        rect.Y = 0;
+                    }
+                    if (rect.Left < 0)
+                    {
+                        rect.X = 0;
+                    }
+                    if (rect.Bottom > pictureBox1.Height)
+                    {
+                        rect.Y = pictureBox1.Height - rect.Height;
+                    }
+                    Refresh();
+                    
+                //}
             }
         }
 
@@ -206,6 +272,7 @@ namespace GrafikaApp1
         {
             drawing = true;
             BtnDrawing.BackColor = Color.LightSeaGreen;
+            BtnResizing.BackColor = default(Color);
         }
     }
 }
